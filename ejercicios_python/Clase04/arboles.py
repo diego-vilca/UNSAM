@@ -49,3 +49,26 @@ H=[float(arbol['altura_tot']) for arbol in arboleda if arbol['nombre_com'] == 'J
 # sino también el diámetro de cada Jacarandá en la lista.
 
 D=[ (float(arbol['altura_tot']), float(arbol['diametro']) )  for arbol in arboleda if arbol['nombre_com'] == 'Jacarandá']
+
+
+#===================================================================================================================================
+# Ejercicio 4.18: Diccionario con medidas
+# Te pedimos que armes un diccionario en el que estas especies sean las claves y los valores asociados sean los datos que generaste 
+# en el ejercicio anterior. Más aún, organizá tu código dentro de una función medidas_de_especies(especies,arboleda) que recibe 
+# una lista de nombres de especies y una lista como la del Ejercicio 4.15 y devuelve un diccionario cuyas claves son estas especies 
+# y sus valores asociados sean las medidas generadas en el ejercicio anterior.
+
+
+especies = ['Eucalipto', 'Palo borracho rosado', 'Jacarandá']
+
+
+def medida_de_especies(especies, arboleda):
+    dic = { especie: [ (float(arbol['altura_tot']), float(arbol['diametro']) )  for arbol in arboleda if arbol['nombre_com'] == especie] for especie in especies}
+    return dic
+
+
+# diccionario = medida_de_especies(especies, arboleda)
+
+# print(len(diccionario['Eucalipto']))
+# print(len(diccionario['Palo borracho rosado']))
+# print(len(diccionario['Jacarandá']))
