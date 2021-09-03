@@ -9,3 +9,14 @@ def invertir_lista(lista):
         invertida.append(lista[i])
     
     return invertida
+
+'''
+solucion que da el video:
+
+    def invertir_lista(lista):
+        invertida = []
+        for e in lista:
+            invertida = [e] + invertida
+        return invertida
+
+'''

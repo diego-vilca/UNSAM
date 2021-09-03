@@ -88,5 +88,5 @@ def balance():
     print(f'Balance: ${balance:0.2f}')
 
 
-balance()
+# balance()
     

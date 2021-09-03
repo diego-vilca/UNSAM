@@ -18,7 +18,7 @@ def propagar(vector):
                     lista[s] = 1  
             # recorro hacia la izquierda
             for t in range(i - 1, -1, -1):
-                # si encuentro uno carbonizzazdo dejo de quemar
+                # si encuentro uno carbonizado dejo de quemar
                 if lista[t]  == -1:
                     break
                 else: # ...sino quemo
