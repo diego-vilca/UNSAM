@@ -85,8 +85,29 @@ def balance():
 
     # print(f'Total costos: ${total_compras}')
     # print(f'Total ventas: ${total_ventas}')
-    print(f'Balance: ${balance:0.2f}')
+    return f'Total costos: ${total_compras}  Total ventas: ${total_ventas}  Balance: ${balance:0.2f}'
 
 
 # balance()
-    
+#=================================================================================================================
+
+
+def costo_camion(nombre_archivo):
+    total = 0.0
+
+    f = open(nombre_archivo)
+    filas = csv.reader(f)
+    encabezados = next(filas)
+
+    for n_fila, fila in enumerate(filas, start = 1):
+        #creo tuplas con zip() y luego las transformo en un diccionario
+        record = dict(zip(encabezados, fila))
+        try:
+            total = total + (int(record['cajones']) * float(record['precio']))
+        
+        # Esto atrapa errores en los int() y float() de arriba.
+        except ValueError:
+            print(f'Fila {n_fila}: No pude interpretar: {fila}')
+
+    f.close()
+    return total
