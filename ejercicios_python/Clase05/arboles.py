@@ -87,6 +87,7 @@ def histograma():
     nombre_archivo = os.path.join('..','Data','arbolado-en-espacios-verdes.csv')
     arboleda = leer_arboles(nombre_archivo)
     altos = [float(arbol['altura_tot']) for arbol in arboleda if arbol['nombre_com'] == 'Jacarandá']
+    plt.figure()
     plt.hist(altos,bins=50)
     plt.show()
 
@@ -104,5 +105,6 @@ def scatter_hd(lista_de_pares):
     plt.xlabel("diametro (cm)")
     plt.ylabel("alto (m)")
     plt.title("Relación diámetro-alto para Jacarandás")
+    plt.figure()
     plt.scatter(d, h, c=colors, alpha=0.25)
     plt.show()
