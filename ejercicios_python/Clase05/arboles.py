@@ -99,12 +99,13 @@ def histograma():
 
 def scatter_hd(lista_de_pares):
     arreglo = np.array(lista_de_pares) 
-    h = [t[0] for t in arreglo]
-    d = [t[1] for t in arreglo]
+    h = arreglo[:,0]
+    d = arreglo[:, 1]
+
     colors = np.random.rand(3255)
     plt.xlabel("diametro (cm)")
     plt.ylabel("alto (m)")
+    plt.figure(1)
     plt.title("Relación diámetro-alto para Jacarandás")
-    plt.figure()
     plt.scatter(d, h, c=colors, alpha=0.25)
     plt.show()
