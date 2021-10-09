@@ -3,15 +3,12 @@ class FormatoTabla:
         '''
         Crea el encabezado de la tabla.
         '''
-        print('%10s %10s %10s %10s' % headers)
-        print(('-'*10 + ' ')*len(headers))
         raise NotImplementedError()
     
     def fila(self, rowdata):
         '''
         Crea una única fila de datos de la tabla.
         '''
-        print('%10s %10d %10.2f %10.2f' % rowdata)
         raise NotImplementedError()
 
 
@@ -30,3 +27,41 @@ class FormatoTablaTXT(FormatoTabla):
         for d in data_fila:
             print(f'{d:>10s}', end=' ')
         print()
+
+class FormatoTablaCSV(FormatoTabla):
+    '''
+    Generar una tabla en formato CSV
+    '''
+    def encabezado(self, headers):
+        print(','.join(headers))
+
+    def fila(self, data_fila):
+        print(','.join(data_fila))
+
+class FormatoTablaHTML(FormatoTabla):
+    '''
+    Generar una tabla en formato CSV
+    '''
+    def encabezado(self, headers):
+        print('<tr><th>', end='')
+        print('</th><th>'.join(headers), end='</th></tr>')
+        print()
+
+    def fila(self, data_fila):
+        print('<tr>', end='')
+        for d in data_fila:
+            print('<td>'+ d +'</td>', end='')
+        print('</tr>')
+
+
+def crear_formateador(nombre):
+    if nombre == 'txt':
+        formateador = FormatoTablaTXT()
+    elif nombre == 'csv':
+        formateador = FormatoTablaCSV()
+    elif nombre == 'html':
+        formateador = FormatoTablaHTML()
+    else:
+        raise RuntimeError(f'Unknown format {nombre}')
+        
+    return formateador
