@@ -63,5 +63,13 @@ def crear_formateador(nombre):
         formateador = FormatoTablaHTML()
     else:
         raise RuntimeError(f'Unknown format {nombre}')
-        
+
     return formateador
+
+
+def imprimir_tabla(data, headers, formateador):
+    formateador.encabezado(headers)
+    for obj in data:
+        registro = [ str(getattr(obj, colname)) for colname in headers]
+        formateador.fila(registro)
+    

@@ -10,3 +10,6 @@ class Lote:
     def vender(self, cantidad):
         if self.cajones >= cantidad:
             self.cajones -= cantidad
+
+    def __repr__(self):
+        return f'Lote(\'{self.nombre}\', {self.cajones}, {self.precio})'
