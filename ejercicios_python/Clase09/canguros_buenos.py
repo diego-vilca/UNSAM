@@ -42,8 +42,8 @@ if __name__ == '__main__':
 # bug importante y dificil de ver
 
 # RESPUESTA: El error se encontraba en el parámetro opcional del método constructor, al cual por defecto se le asignaba un valor mutable.
-# Los parametros opcionales solo se evaluan cuando la definición de la función se ejecuta, por lo que si modificamos el valor mutable del objeto 
-# también modificamos el valor del parametro por defecto y, como comparten referencia, la proxima vez que instanciemos un objeto el nuevo valor por 
+# Los parametros opcionales solo se evaluan cuando la definición de la función se ejecuta (es decir una vez), por lo que si modificamos el valor mutable del objeto 
+# también modificamos el valor del parametro por defecto y, como comparten referencia, la proxima vez que instanciemos un objeto su nuevo valor por 
 # defecto sera el modificado.
 # """
 
