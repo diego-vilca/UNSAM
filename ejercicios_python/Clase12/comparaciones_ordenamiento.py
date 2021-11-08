@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 
-def generar_listas(N):
+def generar_lista(N):
     randoms = np.random.randint (1,1000,N)    
     return randoms.tolist()
 
@@ -194,7 +194,7 @@ def experimento(N, k):
     comps_sel = 0.0
 
     for _ in range(k):
-        lista = generar_listas(N)
+        lista = generar_lista(N)
 
         comps_burb += ord_burbujeo(lista.copy())
         # print(lista)
@@ -223,7 +223,7 @@ def experimento_vectores(Nmax):
 
     for i, n in enumerate(largoLista):
         #genero la lista
-        lista = generar_listas(n)
+        lista = generar_lista(n)
         # print(lista)
         comparaciones_seleccion[i] = ord_seleccion(lista.copy())
         comparaciones_insercion[i] = ord_insercion(lista.copy())

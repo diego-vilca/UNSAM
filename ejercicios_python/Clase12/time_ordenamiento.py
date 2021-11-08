@@ -2,6 +2,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+import timeit as tt
 
 #========================================================================
 # Ordenamiento de selección
@@ -140,4 +141,55 @@ def merge(lista1, lista2):
     return resultado
 
 #========================================================================
+def generar_lista(N):
+    '''genera una lista de N elementos de valores aleatorios entre 1 y 1000.
+    pre: N > 0
+    post: devuelve una lista de N elementos de valores aleatorios
+    '''
+    randoms = np.random.randint (1,1000,N)    
+    return randoms.tolist()
 
+def generar_listas(Nmax):
+    '''genera una lista de listas, una de cada longitud entre 1 y Nmax.
+    pre: Nmax > 0
+    post: devuelve una lista de listas
+    '''
+    listas = []
+    for N in range(1, Nmax + 1):
+        listas.append(generar_lista(N))
+    # print(listas)
+    return listas
+
+
+def experimento_timeit(Nmax):
+    '''Calcula el tiempo de ejecución realizadas por cada método de ordenamiento
+    para listas de longitud entre 1 a Nmax, y grafica los resultados.
+    pre: Nmax entero positivo
+    post: grafica el tiempo de ejecución por cada método de ordenamiento
+    '''
+        
+    tiempo_seleccion = np.zeros(Nmax)
+    tiempo_insercion = np.zeros(Nmax)
+    tiempo_burbujeo = np.zeros(Nmax)
+    tiempo_merge = np.zeros(Nmax)
+
+    listas = generar_listas(Nmax)
+    global lista
+
+    for i, lista in enumerate(listas):
+
+        tiempo_seleccion[i] = tt.timeit('ord_seleccion(lista.copy())', number = 10, globals = globals())
+        tiempo_insercion[i] = tt.timeit('ord_insercion(lista.copy())', number = 10, globals = globals())
+        tiempo_burbujeo[i] = tt.timeit('ord_burbujeo(lista.copy())', number = 10, globals = globals())
+        tiempo_merge[i] = tt.timeit('merge_sort(lista.copy())', number = 10, globals = globals())
+
+    # ahora grafico largos de listas contra los tiempos de ejecución por cada método de ordenamiento.
+    plt.plot(tiempo_seleccion, c = 'blue', label = 'Ord. Secuencial')
+    plt.plot(tiempo_insercion, c='green', label = 'Ord. Inserción')
+    plt.plot(tiempo_burbujeo, c='red', label = 'Ord. Burbujeo')
+    plt.plot(tiempo_merge, c='orange', label = 'Merge Sort')
+    plt.ylabel("Tiempo de ejecución")
+    plt.xlabel("Longitud de lista")
+    plt.title("Tiempo de ejecución de cada método")
+    plt.legend()
+    plt.show()
