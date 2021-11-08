@@ -1,4 +1,4 @@
-from lote import Lote
+# from lote import Lote
 
 class Camion:
     def __init__(self, lotes):
@@ -13,8 +13,12 @@ class Camion:
     def __len__(self):
         return self.lotes.__len__()
 
+    #funciona pero no paso el test automático
+    # def __getitem__(self, indice):
+    #     return eval(self.lotes[indice].__repr__())
+
     def __getitem__(self, indice):
-        return eval(self.lotes[indice].__repr__())
+        return self.lotes.__getitem__(indice)
 
     def __repr__(self):
          return f'Camion({self.lotes})'
